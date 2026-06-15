@@ -2,6 +2,7 @@
 	import Bull from "$lib/objects/Bull.svelte";
 	import FloorTile01 from "$lib/objects/FloorTile01.svelte";
 	import SceneEnvironment from "$lib/objects/SceneEnvironment.svelte";
+	import TableLionGirl from "$lib/objects/TableLionGirl.svelte";
 	import TiledFloor01 from "$lib/objects/TiledFloor01.svelte";
 	import { T } from "@threlte/core";
 
@@ -18,3 +19,4 @@
 <SceneEnvironment path='/sky.jpg' intensity={.4}/>
 <TiledFloor01 FloorTile={FloorTile01}/>
 <Bull/>
+<TableLionGirl position={[5,0,5]}/>

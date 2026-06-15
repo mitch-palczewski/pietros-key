@@ -3,7 +3,8 @@
 	import { Canvas } from "@threlte/core";
 </script>
 
-
-<Canvas>
-    <TestScene01/>
-</Canvas>
+<div class="relative block w-screen h-screen overflow-hidden bg-black">
+    <Canvas>
+        <TestScene01/>
+    </Canvas>
+</div>

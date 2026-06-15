@@ -3,38 +3,47 @@
 	import { T } from '@threlte/core';
 
     type Props = {
-        position: Position
+        position: Position;
+		size: number;
+		edgeWidth: number
     }
+	let {position = 0, size=1, edgeWidth = .1}: Props = $props();
+
 
 	const mainColor = "#bdb395"
 	const edgeColor = '#bd954f'
 	const castShadow = false 
 	const receiveShadow = true
 
-    let {position = 0}: Props = $props();
+	const edgeHeight = .8
+	// svelte-ignore state_referenced_locally
+	const mainWidth = 1 - (edgeWidth*2)
+	// svelte-ignore state_referenced_locally
+	const edgePosOffest = .5 - (edgeWidth/2)
+
 </script>
 
-<T.Group position={position}>
+<T.Group position={position} scale={[size,1,size]}>
 	<T.Mesh {castShadow} {receiveShadow}>
-		<T.BoxGeometry args={[0.8, 1, 0.8]} />
+		<T.BoxGeometry args={[mainWidth, 1, mainWidth]} />
 		<T.MeshStandardMaterial color={mainColor} />
 	</T.Mesh>
 
-	<T.Mesh {castShadow} {receiveShadow} position={[.45,0,0]}>
-		<T.BoxGeometry args={[0.1, .95, .8]} />
+	<T.Mesh {castShadow} {receiveShadow} position={[edgePosOffest,0,0]}>
+		<T.BoxGeometry args={[edgeWidth, edgeHeight, mainWidth]} />
 		<T.MeshStandardMaterial color={edgeColor} />
 	</T.Mesh>
-	<T.Mesh {castShadow} {receiveShadow} position={[-.45,0,0]}>
-		<T.BoxGeometry args={[0.1, .95, .8]} />
+	<T.Mesh {castShadow} {receiveShadow} position={[- edgePosOffest,0,0]}>
+		<T.BoxGeometry args={[edgeWidth, edgeHeight, mainWidth]} />
 		<T.MeshStandardMaterial color={edgeColor} />
 	</T.Mesh>
 
-	<T.Mesh {castShadow} {receiveShadow} position={[0,0,.45]}>
-		<T.BoxGeometry args={[.8, .95, .1]} />
+	<T.Mesh {castShadow} {receiveShadow} position={[0,0,edgePosOffest]}>
+		<T.BoxGeometry args={[mainWidth, edgeHeight, edgeWidth]} />
 		<T.MeshStandardMaterial color={edgeColor} />
 	</T.Mesh>
-	<T.Mesh {castShadow} {receiveShadow} position={[0,0, -.45]}>
-		<T.BoxGeometry args={[.8, .95, .1]} />
+	<T.Mesh {castShadow} {receiveShadow} position={[0,0, - edgePosOffest]}>
+		<T.BoxGeometry args={[mainWidth, edgeHeight, edgeWidth]} />
 		<T.MeshStandardMaterial color={edgeColor} />
 	</T.Mesh>
 </T.Group>
